@@ -1,0 +1,1151 @@
+/* =========================================================================
+   X'MAS DECO — RESPONSIVIDADE
+   -------------------------------------------------------------------------
+   Organização:
+   1. Desktops menores        (até 1120px)
+   2. Navegação recolhível    (até 1024px)
+   3. Tablets                 (até 900px)
+   4. Tablets retrato         (até 768px)
+   5. Celulares               (até 560px)
+   6. Celulares pequenos      (até 420px)
+   7. Telas baixas, movimento reduzido e impressão
+   ========================================================================= */
+
+/* ==================== 1. DESKTOPS MENORES (1120px) ==================== */
+
+@media (max-width: 1120px) {
+    .top-bar-conteudo,
+    .nav-container {
+        padding-inline: 20px;
+    }
+
+    .nav-container {
+        gap: 12px;
+    }
+
+    .nav-links a {
+        padding: 9px 10px;
+        font-size: 0.93rem;
+    }
+
+    .search-form {
+        flex-basis: 220px;
+    }
+
+    .secao {
+        padding: 64px 20px;
+    }
+
+    .grade-categorias {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .catalogo-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .sobre-grid,
+    .equipe-grid {
+        gap: 32px;
+    }
+
+    .page-hero-imagem {
+        height: 240px;
+        max-width: 240px;
+    }
+
+    .footer-grid {
+        gap: 28px;
+    }
+
+    .contagem-caixa {
+        padding: 30px 32px;
+    }
+}
+
+/* ==================== 2. NAVEGAÇÃO RECOLHÍVEL (1024px) ==================== */
+
+@media (max-width: 1024px) {
+    .nav-container {
+        flex-wrap: wrap;
+        gap: 10px 12px;
+        min-height: 66px;
+        padding: 9px 18px;
+    }
+
+    .logo {
+        width: 56px;
+    }
+
+    /* Logo à esquerda; botão do menu e carrinho à direita */
+    .nav-toggle {
+        display: block;
+        order: 2;
+        margin-left: auto;
+    }
+
+    .nav-acoes {
+        order: 3;
+    }
+
+    .nav-links {
+        order: 4;
+        flex: 1 1 100%;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 4px;
+        max-height: 0;
+        padding: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transition: max-height 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
+                    opacity 0.3s ease,
+                    visibility 0.3s ease,
+                    padding 0.3s ease;
+    }
+
+    .nav-links.aberto {
+        max-height: 360px;
+        padding: 6px 0 2px;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-links a {
+        padding: 11px 14px;
+        border-radius: 10px;
+        text-align: left;
+    }
+
+    .nav-links a::after {
+        left: 14px;
+        right: auto;
+        bottom: 7px;
+        width: 30px;
+        transform-origin: left center;
+    }
+
+    /* O formulário de busca acompanha o menu aberto */
+    .search-form {
+        order: 5;
+        flex: 1 1 100%;
+        max-height: 0;
+        margin: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transition: max-height 0.35s ease,
+                    opacity 0.3s ease,
+                    visibility 0.3s ease,
+                    margin 0.3s ease;
+    }
+
+    .nav-links.aberto + .search-form {
+        max-height: 64px;
+        margin: 2px 0 8px;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .search-form input {
+        flex: 1 1 auto;
+    }
+
+    .banner-carousel-container,
+    .carousel-track,
+    .carousel-slide,
+    .slide-content {
+        min-height: 480px;
+    }
+
+    .santa-img {
+        width: min(660px, 84%);
+    }
+
+    .sobre-grid,
+    .equipe-grid,
+    .contato-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .sobre-imagem {
+        width: 100%;
+        max-width: 460px;
+        margin-inline: auto;
+    }
+
+    .equipe-imagem img {
+        max-height: 380px;
+    }
+
+    .valores-grid {
+        gap: 18px;
+    }
+
+    .ofertas-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .page-hero-imagem {
+        display: none;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px 36px;
+    }
+
+    .footer-marca p {
+        max-width: none;
+    }
+
+    .carrinho-painel {
+        width: min(420px, 100%);
+    }
+}
+
+/* ==================== 3. TABLETS (900px) ==================== */
+
+@media (max-width: 900px) {
+    .banner-carousel-container,
+    .carousel-track,
+    .carousel-slide,
+    .slide-content {
+        min-height: 440px;
+    }
+
+    .santa-img {
+        width: clamp(320px, 78vw, 560px);
+    }
+
+    .slide-content {
+        padding: 16px 58px;
+    }
+
+    /* Carrossel de ofertas empilhado */
+    .slide-conteudo {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+        min-height: 0;
+        padding: 32px 58px 48px;
+        text-align: center;
+    }
+
+    .slide-imagem {
+        width: 100%;
+        max-width: 420px;
+        margin-inline: auto;
+    }
+
+    .slide-item .card-image {
+        height: 220px;
+    }
+
+    .slide-info .btn-claro {
+        margin-inline: auto;
+    }
+
+    /* Vantagens em duas colunas */
+    .vantagens-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 10px 16px;
+    }
+
+    .vantagem {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 246, 234, 0.16);
+        padding: 14px 16px;
+    }
+
+    .vantagem:nth-child(odd) {
+        border-right: 1px solid rgba(255, 246, 234, 0.16);
+    }
+
+    .vantagem:nth-last-child(-n + 2) {
+        border-bottom: 0;
+    }
+
+    .valores-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .numeros-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 26px 16px;
+    }
+
+    .catalogo-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .filtros {
+        justify-content: center;
+    }
+
+    .catalogo-controles {
+        justify-content: center;
+    }
+
+    .busca-catalogo {
+        flex: 1 1 220px;
+    }
+
+    .busca-catalogo input {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .resultado-info {
+        width: 100%;
+        text-align: center;
+    }
+
+    .faixa-ajuda-conteudo {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px 28px;
+    }
+
+    .chamada-final {
+        grid-template-columns: minmax(0, 1fr);
+        margin-bottom: 56px;
+    }
+
+    .chamada-conteudo {
+        padding: 36px 32px;
+    }
+
+    .chamada-imagem {
+        max-height: 230px;
+        margin-top: -14px;
+    }
+
+    .contagem-caixa {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+        padding: 30px 26px;
+        text-align: center;
+    }
+
+    .contador-ofertas {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Modal de produto empilhado */
+    .modal-caixa {
+        grid-template-columns: minmax(0, 1fr);
+        max-height: 92vh;
+    }
+
+    .modal-imagem {
+        min-height: 250px;
+        padding: 22px;
+    }
+
+    .modal-imagem img {
+        max-height: 280px;
+    }
+
+    .lightbox {
+        padding: 60px 64px;
+    }
+}
+
+/* ==================== 4. TABLETS RETRATO (768px) ==================== */
+
+@media (max-width: 768px) {
+    .top-bar-conteudo {
+        justify-content: center;
+        padding: 6px 12px;
+        font-size: 0.72rem;
+    }
+
+    .top-frase {
+        display: none;
+    }
+
+    .nav-container {
+        gap: 8px;
+        padding: 8px 12px;
+    }
+
+    .logo {
+        width: 52px;
+    }
+
+    .icone-nav {
+        min-height: 38px;
+        padding: 6px 10px;
+        font-size: 0.78rem;
+    }
+
+    .secao {
+        padding: 52px 16px;
+    }
+
+    .secao-cabecalho {
+        margin-bottom: 30px;
+    }
+
+    .banner-carousel-container,
+    .carousel-track,
+    .carousel-slide,
+    .slide-content {
+        min-height: 420px;
+    }
+
+    .santa-img {
+        width: clamp(300px, 88vw, 560px);
+    }
+
+    .slide-content {
+        padding: 12px 48px;
+    }
+
+    .botao-seta {
+        width: 42px;
+        height: 42px;
+        font-size: 1.4rem;
+    }
+
+    .prev-btn {
+        left: 10px;
+    }
+
+    .next-btn {
+        right: 10px;
+    }
+
+    .carrossel-dots {
+        bottom: 10px;
+    }
+
+    .grade-categorias {
+        gap: 16px;
+    }
+
+    .categoria-figura {
+        height: 170px;
+    }
+
+    .catalogo-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .produto-figura {
+        height: 175px;
+    }
+
+    .produto-info {
+        padding: 12px 12px 14px;
+    }
+
+    .produto-nome {
+        font-size: 0.95rem;
+    }
+
+    .secao-promocoes {
+        padding-inline: 16px;
+    }
+
+    .slide-conteudo {
+        padding: 28px 46px 44px;
+    }
+
+    .slide-item .card-image {
+        height: 210px;
+    }
+
+    .btn-carrossel {
+        width: 40px;
+        height: 40px;
+        font-size: 1.7rem;
+    }
+
+    .btn-carrossel.prev {
+        left: 10px;
+    }
+
+    .btn-carrossel.next {
+        right: 10px;
+    }
+
+    .page-hero {
+        padding: 44px 16px 52px;
+    }
+
+    .page-hero.compacto {
+        padding-block: 38px 48px;
+    }
+
+    .page-hero h1 {
+        font-size: clamp(1.7rem, 7vw, 2.4rem);
+    }
+
+    .equipe-imagem img {
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+    }
+
+    .ofertas-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .galeria-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .faq-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .campo-duplo {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+    }
+
+    .card-formulario,
+    .info-contato {
+        padding: 26px 22px;
+    }
+
+    .footer-grid {
+        padding: 40px 16px 26px;
+        gap: 26px;
+    }
+
+    .footer-base {
+        padding: 14px 16px 20px;
+        font-size: 0.72rem;
+    }
+
+    .carrinho-painel {
+        width: 100%;
+    }
+
+    .modal-produto {
+        padding: 14px;
+    }
+
+    .lightbox {
+        padding: 62px 16px 96px;
+    }
+
+    .lightbox-figura img {
+        max-height: 64vh;
+    }
+
+    .lightbox-seta {
+        top: auto;
+        bottom: 24px;
+        transform: none;
+    }
+
+    .lightbox-seta.anterior {
+        left: calc(50% - 62px);
+    }
+
+    .lightbox-seta.proxima {
+        right: calc(50% - 62px);
+    }
+
+    .music-controls {
+        bottom: 10px;
+        left: 10px;
+    }
+
+    .music-button {
+        width: 40px;
+        height: 40px;
+        font-size: 0.88rem;
+    }
+
+    .voltar-inicio {
+        right: 10px;
+        bottom: 10px;
+        width: 42px;
+        height: 42px;
+    }
+
+    .toast {
+        bottom: 16px;
+        width: calc(100% - 24px);
+        border-radius: 14px;
+    }
+}
+
+/* ==================== 5. CELULARES (560px) ==================== */
+
+@media (max-width: 560px) {
+    .secao {
+        padding: 46px 14px;
+    }
+
+    .secao-titulo {
+        font-size: clamp(1.55rem, 6vw, 2rem);
+    }
+
+    .contador-natal {
+        white-space: normal;
+        text-align: center;
+    }
+
+    .banner-carousel-container,
+    .carousel-track,
+    .carousel-slide,
+    .slide-content {
+        min-height: 380px;
+    }
+
+    .santa-img {
+        width: 92%;
+    }
+
+    .slide-content {
+        padding: 10px 40px;
+    }
+
+    .botao-seta {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+    }
+
+    /* Categorias em duas colunas; a última fica centralizada */
+    .grade-categorias {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .botao-categoria {
+        padding: 10px 10px 14px;
+        border-radius: 18px;
+    }
+
+    .categoria-figura {
+        height: 150px;
+        margin-bottom: 10px;
+    }
+
+    .titulo-secao {
+        font-size: 0.92rem;
+    }
+
+    .categoria-contagem {
+        font-size: 0.68rem;
+    }
+
+    .botao-categoria:last-child {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: min(100%, 240px);
+    }
+
+    .vantagens-grid {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 6px 12px;
+    }
+
+    .vantagem,
+    .vantagem:nth-child(odd) {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 246, 234, 0.16);
+        padding: 13px 8px;
+    }
+
+    .vantagem:last-child {
+        border-bottom: 0;
+    }
+
+    .vantagem-icone {
+        width: 42px;
+        height: 42px;
+        font-size: 1.25rem;
+    }
+
+    .catalogo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .produto-figura {
+        height: 160px;
+        padding: 10px;
+    }
+
+    .produto-info {
+        gap: 4px;
+        padding: 11px 10px 13px;
+    }
+
+    .produto-nome {
+        font-size: 0.92rem;
+    }
+
+    .produto-preco {
+        font-size: 1.02rem;
+    }
+
+    .btn-comprar {
+        padding: 9px 10px;
+        font-size: 0.78rem;
+    }
+
+    .slide-conteudo {
+        padding: 24px 20px 42px;
+    }
+
+    .slide-item .card-image {
+        height: 190px;
+    }
+
+    .btn-carrossel {
+        width: 36px;
+        height: 36px;
+        font-size: 1.4rem;
+    }
+
+    .contagem-caixa {
+        padding: 26px 18px;
+    }
+
+    .tempo-box {
+        min-width: 64px;
+        padding: 10px 8px;
+    }
+
+    .tempo-box strong {
+        font-size: 1.7rem;
+    }
+
+    .oferta-imagem {
+        height: 200px;
+    }
+
+    .sobre-imagem {
+        max-width: 100%;
+    }
+
+    .sobre-imagem img {
+        aspect-ratio: 4 / 3;
+    }
+
+    .sobre-detalhe {
+        right: -4px;
+        bottom: -18px;
+        width: 108px;
+        height: 108px;
+    }
+
+    .sobre-detalhe strong {
+        font-size: 2rem;
+    }
+
+    .sobre-detalhe span {
+        font-size: 0.62rem;
+    }
+
+    .linha-tempo li {
+        grid-template-columns: 64px 1fr;
+        gap: 12px;
+    }
+
+    .linha-tempo::before {
+        left: 22px;
+    }
+
+    .linha-ano {
+        width: 46px;
+        height: 46px;
+        font-size: 0.8rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+        padding-top: 36px;
+    }
+
+    .footer-base {
+        flex-direction: column;
+        gap: 6px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .card-formulario h2,
+    .info-contato-topo h2 {
+        font-size: 1.5rem;
+    }
+
+    .campo-rodape {
+        flex-wrap: wrap;
+    }
+
+    .contador-caracteres {
+        width: 100%;
+        margin-left: 0;
+        text-align: right;
+    }
+
+    .chamada-conteudo {
+        padding: 30px 20px;
+    }
+
+    .chamada-acoes .btn {
+        flex: 1 1 100%;
+    }
+
+    .chamada-imagem {
+        max-height: 200px;
+    }
+
+    .credito-bloco {
+        padding: 22px 18px;
+    }
+
+    .carrinho-item {
+        grid-template-columns: 58px 1fr auto;
+        gap: 8px;
+    }
+
+    .carrinho-item img {
+        width: 58px;
+        height: 58px;
+    }
+
+    .modal-imagem {
+        min-height: 200px;
+        padding: 16px;
+    }
+
+    .modal-imagem img {
+        max-height: 220px;
+    }
+
+    .modal-conteudo {
+        padding: 22px 18px;
+    }
+
+    .lightbox-seta {
+        width: 44px;
+        height: 44px;
+        font-size: 1.7rem;
+    }
+
+    .lightbox-seta.anterior {
+        left: calc(50% - 56px);
+    }
+
+    .lightbox-seta.proxima {
+        right: calc(50% - 56px);
+    }
+}
+
+/* ==================== 6. CELULARES PEQUENOS (420px) ==================== */
+
+@media (max-width: 420px) {
+    .nav-container {
+        padding: 8px 10px;
+        gap: 7px;
+    }
+
+    .logo {
+        width: 48px;
+    }
+
+    .nav-toggle {
+        width: 40px;
+        height: 40px;
+        padding: 9px;
+    }
+
+    .icone-nav {
+        min-height: 36px;
+        padding: 6px 9px;
+        font-size: 0.74rem;
+    }
+
+    .carrinho-botao {
+        padding-inline: 10px;
+    }
+
+    .nav-links a {
+        padding: 10px 12px;
+        font-size: 0.92rem;
+    }
+
+    .secao {
+        padding: 40px 12px;
+    }
+
+    .banner-carousel-container,
+    .carousel-track,
+    .carousel-slide,
+    .slide-content {
+        min-height: 340px;
+    }
+
+    .santa-img {
+        width: 96%;
+    }
+
+    .slide-content {
+        padding: 8px 34px;
+    }
+
+    .botao-seta {
+        width: 32px;
+        height: 32px;
+        font-size: 1.1rem;
+        background: rgba(28, 65, 21, 0.72);
+    }
+
+    .catalogo-toolbar {
+        padding: 14px 10px;
+    }
+
+    .filtros {
+        gap: 6px;
+    }
+
+    .chip {
+        padding: 7px 11px;
+        font-size: 0.76rem;
+    }
+
+    .catalogo-controles {
+        gap: 8px;
+    }
+
+    .busca-catalogo input,
+    .ordenar select {
+        min-height: 38px;
+        font-size: 0.8rem;
+    }
+
+    .catalogo-grid {
+        gap: 10px;
+    }
+
+    .produto-figura {
+        height: 140px;
+        padding: 8px;
+    }
+
+    .produto-categoria {
+        font-size: 0.6rem;
+        letter-spacing: 0.08em;
+    }
+
+    .produto-nome {
+        font-size: 0.86rem;
+    }
+
+    .produto-preco {
+        font-size: 0.95rem;
+    }
+
+    .selo {
+        top: 8px;
+        left: 8px;
+        padding: 3px 7px;
+        font-size: 0.6rem;
+    }
+
+    .btn-comprar {
+        font-size: 0.74rem;
+    }
+
+    .grade-categorias {
+        gap: 10px;
+    }
+
+    .categoria-figura {
+        height: 130px;
+    }
+
+    .slide-conteudo {
+        padding: 20px 14px 38px;
+    }
+
+    .slide-info .card-title {
+        font-size: 1.25rem;
+    }
+
+    .slide-info p {
+        font-size: 0.88rem;
+    }
+
+    .tempo-box {
+        min-width: 56px;
+        padding: 8px 6px;
+    }
+
+    .tempo-box strong {
+        font-size: 1.45rem;
+    }
+
+    .tempo-box span {
+        font-size: 0.6rem;
+    }
+
+    .oferta-imagem {
+        height: 180px;
+    }
+
+    .galeria-grid {
+        gap: 8px;
+    }
+
+    .galeria-item span {
+        left: 8px;
+        bottom: 8px;
+        font-size: 0.65rem;
+    }
+
+    .card-formulario,
+    .info-contato {
+        padding: 20px 15px;
+    }
+
+    .modal-produto {
+        padding: 8px;
+    }
+
+    .modal-caixa {
+        border-radius: 16px;
+    }
+
+    .modal-compra {
+        gap: 8px;
+    }
+
+    .modal-compra .btn {
+        flex: 1 1 100%;
+    }
+
+    .carrinho-cabecalho {
+        padding: 18px 16px 14px;
+    }
+
+    .carrinho-cabecalho h2 {
+        font-size: 1.3rem;
+    }
+
+    .carrinho-itens {
+        padding: 12px;
+    }
+
+    .carrinho-rodape {
+        padding: 14px 14px 18px;
+    }
+
+    .music-button {
+        width: 38px;
+        height: 38px;
+        font-size: 0.84rem;
+    }
+
+    .voltar-inicio {
+        width: 40px;
+        height: 40px;
+        font-size: 1.05rem;
+    }
+
+    .lightbox-fechar {
+        top: 10px;
+        right: 12px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.6rem;
+    }
+
+    .migalhas {
+        gap: 5px;
+        font-size: 0.74rem;
+    }
+}
+
+/* ==================== 7. EXTRAS ==================== */
+
+/* Telas baixas (celular na horizontal) */
+@media (max-height: 520px) and (orientation: landscape) {
+    .banner-carousel-container,
+    .carousel-track,
+    .carousel-slide,
+    .slide-content {
+        min-height: 320px;
+    }
+
+    .santa-img {
+        width: auto;
+        max-width: 80%;
+        max-height: 280px;
+    }
+}
+
+/* Acessibilidade: menos movimento */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+/* Impressão */
+@media print {
+    .site-nav,
+    .top-bar,
+    .music-controls,
+    .voltar-inicio,
+    .toast,
+    .carrinho-overlay,
+    .carrinho-painel,
+    .modal-produto,
+    .lightbox,
+    .botao-seta,
+    .btn-carrossel,
+    .carrossel-dots,
+    .faixa-vantagens,
+    .chamada-final {
+        display: none !important;
+    }
+
+    body {
+        background: #fff;
+        color: #000;
+    }
+
+    .secao {
+        padding: 14px 0;
+        break-inside: avoid;
+    }
+
+    .revelar {
+        opacity: 1;
+        transform: none;
+    }
+
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+}

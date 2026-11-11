@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DecoraÃ§Ã£o Interna da X'mas Deco: peÃ§as de mesa, aparadores e detalhes que aquecem cada cÃ´modo da casa.">
+    <meta name="theme-color" content="#476c40">
+    <title>DecoraÃ§Ã£o Interna | X'mas Deco</title>
+    <link rel="icon" href="../img/logo.png" type="image/png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsividade.css">
+</head>
+
+<body class="pagina-interna">
+
+    <a class="link-pular" href="#conteudo">Pular para o conteÃºdo</a>
+
+    <header class="site-nav" id="topo">
+        <div class="top-bar">
+            <div class="top-bar-conteudo">
+                <span class="top-frase">DecoraÃ§Ã£o natalina artesanal desde 2014</span>
+                <span class="contador-natal" id="contadorNatal">Carregando contador...</span>
+            </div>
+        </div>
+
+        <nav class="nav-container" aria-label="NavegaÃ§Ã£o principal">
+            <a class="logo-link" href="index.html" aria-label="X'mas Deco â€” inÃ­cio">
+                <img src="../img/logo.png" alt="Logo da X'mas Deco" class="logo">
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menuPrincipal" aria-label="Abrir menu">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="menuPrincipal">
+                <a href="index.html">InÃ­cio</a>
+                <a href="index.html#catalogo">CatÃ¡logo</a>
+                <a href="index.html#sobre">Nossa HistÃ³ria</a>
+                <a href="contato.html">Contato</a>
+            </div>
+
+            <form class="search-form" role="search" action="decoarvore.html" method="get">
+                <label class="sr-only" for="searchInput">Pesquisar produtos</label>
+                <input type="search" id="searchInput" name="termo" placeholder="Pesquisar produtos..." autocomplete="off">
+                <input type="hidden" name="categoria" value="todas">
+                <button type="submit" aria-label="Buscar produtos">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>
+                </button>
+            </form>
+
+            <div class="nav-acoes">
+                <button class="icone-nav" id="btnNeve" type="button" aria-pressed="true" title="Desativar neve">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="2" x2="12" y2="22"></line><line x1="4" y1="7" x2="20" y2="17"></line><line x1="4" y1="17" x2="20" y2="7"></line><line x1="12" y1="2" x2="9.5" y2="4.5"></line><line x1="12" y1="2" x2="14.5" y2="4.5"></line><line x1="12" y1="22" x2="9.5" y2="19.5"></line><line x1="12" y1="22" x2="14.5" y2="19.5"></line></svg>
+                    <span>Neve</span>
+                </button>
+                <button class="icone-nav carrinho-botao" id="btnCarrinho" type="button" aria-label="Abrir carrinho">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M2 3h3l2.6 12.5a1.5 1.5 0 0 0 1.5 1.2h8.9a1.5 1.5 0 0 0 1.5-1.2L21.5 7H6"></path></svg>
+                    <span class="carrinho-contador" data-carrinho-contador>0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="conteudo">
+
+        <section class="page-hero categoria-hero">
+            <div class="page-hero-conteudo">
+                <nav class="migalhas" aria-label="VocÃª estÃ¡ aqui">
+                    <a href="index.html">InÃ­cio</a>
+                    <span aria-hidden="true">â€º</span>
+                    <a href="index.html#catalogo">CatÃ¡logo</a>
+                    <span aria-hidden="true">â€º</span>
+                    <span>DecoraÃ§Ã£o Interna</span>
+                </nav>
+                <span class="secao-sobretitulo">Categoria</span>
+                <h1>DecoraÃ§Ã£o Interna</h1>
+                <p>PeÃ§as de mesa, aparadores e detalhes que aquecem cada cÃ´modo da casa.</p>
+                <a class="btn btn-fantasma" href="index.html#catalogo">Ver todas as categorias</a>
+            </div>
+            <img src="../img/produtos/casinha-relogio.jpg" alt="" class="page-hero-imagem" aria-hidden="true">
+        </section>
+
+        <section class="secao secao-catalogo" aria-labelledby="tituloCategoria">
+            <h2 class="sr-only" id="tituloCategoria">Produtos de DecoraÃ§Ã£o Interna</h2>
+
+            <div class="catalogo-toolbar">
+                <div class="filtros" aria-label="Categorias">
+                    <a class="chip" href="decoarvore.html">Ãrvore</a>
+                    <a class="chip ativo" href="interno.html" aria-current="page">Interna</a>
+                    <a class="chip" href="externo.html">Externa</a>
+                    <a class="chip" href="meias-e-globos.html">Meias e Globos</a>
+                </div>
+
+                <div class="catalogo-controles">
+                    <label class="busca-catalogo">
+                        <span class="sr-only">Buscar em DecoraÃ§Ã£o Interna</span>
+                        <input type="search" placeholder="Buscar nesta categoria..." data-busca-catalogo autocomplete="off">
+                    </label>
+                    <span class="resultado-info" id="contadorResultados" aria-live="polite"></span>
+                </div>
+            </div>
+
+            <div id="container-produtos" class="catalogo-grid" data-categoria="interna" aria-live="polite"></div>
+        </section>
+
+        <section class="faixa-ajuda">
+            <div class="faixa-ajuda-conteudo revelar">
+                <div>
+                    <span class="secao-sobretitulo">Continue explorando</span>
+                    <h2>Quer ver todas as categorias juntas?</h2>
+                    <p>Na pÃ¡gina inicial vocÃª conhece as 4 categorias com os 40 produtos da loja.</p>
+                </div>
+                <a class="btn btn-primario btn-grande" href="index.html#catalogo">Ir para o catÃ¡logo</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-marca">
+                <img src="../img/logo.png" alt="Logo da X'mas Deco" class="footer-logo">
+                <p>DecoraÃ§Ã£o natalina para transformar cada detalhe da sua casa em memÃ³ria afetiva.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/xmasdeco" target="_blank" rel="noopener" aria-label="Instagram da X'mas Deco">Instagram</a>
+                    <a href="https://www.facebook.com/xmasdeco" target="_blank" rel="noopener" aria-label="Facebook da X'mas Deco">Facebook</a>
+                    <a href="https://wa.me/5519993801902" target="_blank" rel="noopener" aria-label="WhatsApp da X'mas Deco">WhatsApp</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>NavegaÃ§Ã£o</h3>
+                <ul>
+                    <li><a href="index.html">InÃ­cio</a></li>
+                    <li><a href="index.html#catalogo">CatÃ¡logo</a></li>
+                    <li><a href="index.html#sobre">Nossa HistÃ³ria</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Categorias</h3>
+                <ul>
+                    <li><a href="decoarvore.html">DecoraÃ§Ã£o de Ãrvore</a></li>
+                    <li><a href="interno.html">DecoraÃ§Ã£o Interna</a></li>
+                    <li><a href="externo.html">DecoraÃ§Ã£o Externa</a></li>
+                    <li><a href="meias-e-globos.html">Meias e Globos</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Fale com a gente</h3>
+                <ul class="footer-contato">
+                    <li>E-mail: <a href="mailto:contato@xmasdeco.com">contato@xmasdeco.com</a></li>
+                    <li>Telefone: <a href="tel:+5519993801902">(19) 99380-1902</a></li>
+                    <li>EndereÃ§o: Rua das AcÃ¡cias, 122 â€” Campinas/SP</li>
+                    <li>HorÃ¡rio: seg. a sÃ¡b., das 9h Ã s 18h</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-base">
+            <p>Â© <span data-ano>2026</span> X'mas Deco. Projeto de Desenvolvimento Web â€” feito por Isadora Almeida, Nicolas Almeida e Yasmin Almeida.</p>
+            <p>CrÃ©ditos de imagens e sons no arquivo <strong>README.md</strong> do projeto Â· <a href="#topo">Voltar ao topo</a></p>
+        </div>
+    </footer>
+
+    <div class="music-controls" aria-label="Controles de mÃºsica">
+        <button id="btnTocar" class="music-button" type="button" aria-label="Tocar mÃºsica" title="Tocar mÃºsica">â–¶</button>
+        <button id="btnParar" class="music-button" type="button" aria-label="Parar mÃºsica" title="Parar mÃºsica">â– </button>
+    </div>
+
+    <button id="btnInicio" class="voltar-inicio" type="button" aria-label="Voltar ao inÃ­cio" title="Voltar ao topo">â†‘</button>
+
+    <audio id="musicaNatal" loop preload="none">
+        <source src="../audio/snowmansia.mp3" type="audio/mpeg">
+        Seu navegador nÃ£o suporta Ã¡udio.
+    </audio>
+
+    <script src="../js/produtos.js"></script>
+    <script src="../js/catalogo.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>

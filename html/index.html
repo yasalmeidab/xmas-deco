@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="X'mas Deco — loja virtual de decoração natalina com enfeites de árvore, decoração interna, externa, meias e globos de neve.">
+    <meta name="theme-color" content="#476c40">
+    <title>X'mas Deco — Magia de Natal em cada detalhe</title>
+    <link rel="icon" href="../img/logo.png" type="image/png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsividade.css">
+</head>
+
+<body class="pagina-inicial">
+
+    <a class="link-pular" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="site-nav" id="topo">
+        <div class="top-bar">
+            <div class="top-bar-conteudo">
+                <span class="top-frase">Decoração natalina artesanal desde 2014</span>
+                <span class="contador-natal" id="contadorNatal">Carregando contador...</span>
+            </div>
+        </div>
+
+        <nav class="nav-container" aria-label="Navegação principal">
+            <a class="logo-link" href="index.html" aria-label="X'mas Deco — início">
+                <img src="../img/logo.png" alt="Logo da X'mas Deco" class="logo">
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menuPrincipal" aria-label="Abrir menu">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="menuPrincipal">
+                <a href="index.html">Início</a>
+                <a href="index.html#catalogo">Catálogo</a>
+                <a href="index.html#sobre">Nossa História</a>
+                <a href="contato.html">Contato</a>
+            </div>
+
+            <form class="search-form" role="search" action="decoarvore.html" method="get">
+                <label class="sr-only" for="searchInput">Pesquisar produtos</label>
+                <input type="search" id="searchInput" name="termo" placeholder="Pesquisar produtos..." autocomplete="off">
+                <input type="hidden" name="categoria" value="todas">
+                <button type="submit" aria-label="Buscar produtos">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>
+                </button>
+            </form>
+
+            <div class="nav-acoes">
+                <button class="icone-nav" id="btnNeve" type="button" aria-pressed="true" title="Desativar neve">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="2" x2="12" y2="22"></line><line x1="4" y1="7" x2="20" y2="17"></line><line x1="4" y1="17" x2="20" y2="7"></line><line x1="12" y1="2" x2="9.5" y2="4.5"></line><line x1="12" y1="2" x2="14.5" y2="4.5"></line><line x1="12" y1="22" x2="9.5" y2="19.5"></line><line x1="12" y1="22" x2="14.5" y2="19.5"></line></svg>
+                    <span>Neve</span>
+                </button>
+                <button class="icone-nav carrinho-botao" id="btnCarrinho" type="button" aria-label="Abrir carrinho">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M2 3h3l2.6 12.5a1.5 1.5 0 0 0 1.5 1.2h8.9a1.5 1.5 0 0 0 1.5-1.2L21.5 7H6"></path></svg>
+                    <span class="carrinho-contador" data-carrinho-contador>0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="conteudo">
+
+        <!-- ============================ CARROSSEL PRINCIPAL ============================ -->
+        <section class="banner-carousel-container" id="home" aria-label="Destaques da loja">
+            <div class="fundo-fixo" aria-hidden="true"></div>
+
+            <div class="carousel-track">
+                <article class="carousel-slide">
+                    <div class="slide-content">
+                        <div class="imagem-parallax">
+                            <img src="../img/papainoelpropaganda.png"
+                                 class="santa-img"
+                                 alt="Papai Noel com a mensagem Boas Festas"
+                                 fetchpriority="high">
+                        </div>
+                    </div>
+                </article>
+
+                <article class="carousel-slide">
+                    <div class="slide-content">
+                        <div class="imagem-parallax">
+                            <img src="../img/meninapropaganda.png"
+                                 class="santa-img"
+                                 alt="Menina sorridente em clima de Natal"
+                                 loading="lazy">
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- A neve é criada por JavaScript dentro deste container -->
+            <div id="neve-carrossel" aria-hidden="true"></div>
+
+            <button class="botao-seta prev-btn" type="button" aria-label="Destaque anterior">‹</button>
+            <button class="botao-seta next-btn" type="button" aria-label="Próximo destaque">›</button>
+            <div class="carrossel-dots hero-dots" id="heroDots" aria-label="Selecionar destaque"></div>
+        </section>
+
+        <!-- ============================ VANTAGENS ============================ -->
+        <section class="faixa-vantagens" aria-label="Vantagens da loja">
+            <div class="vantagens-grid">
+                <article class="vantagem">
+                    <span class="vantagem-icone" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"></path><path d="M3 8l9 5 9-5"></path><path d="M12 13v8"></path></svg>
+                    </span>
+                    <div>
+                        <h2>Frete grátis</h2>
+                        <p>Em compras acima de R$ 199,00</p>
+                    </div>
+                </article>
+                <article class="vantagem">
+                    <span class="vantagem-icone" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+                    </span>
+                    <div>
+                        <h2>Até 6x sem juros</h2>
+                        <p>Nos cartões de crédito</p>
+                    </div>
+                </article>
+                <article class="vantagem">
+                    <span class="vantagem-icone" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 8h13v9H1z"></path><path d="M14 11h5l3 3v3h-8"></path><circle cx="5.5" cy="18.5" r="1.8"></circle><circle cx="17.5" cy="18.5" r="1.8"></circle></svg>
+                    </span>
+                    <div>
+                        <h2>Entrega rápida</h2>
+                        <p>Para todo o Brasil</p>
+                    </div>
+                </article>
+                <article class="vantagem">
+                    <span class="vantagem-icone" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C7 16.5 3 13.3 3 9.2 3 6.3 5.3 4 8.2 4c1.6 0 3 .8 3.8 2 .8-1.2 2.2-2 3.8-2C18.7 4 21 6.3 21 9.2c0 4.1-4 7.3-9 11.8z"></path></svg>
+                    </span>
+                    <div>
+                        <h2>Feito com carinho</h2>
+                        <p>Peças selecionadas à mão</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ============================ CATEGORIAS ============================ -->
+        <section class="secao secao-categorias" id="catalogo" aria-labelledby="tituloCategorias">
+            <div class="secao-cabecalho revelar">
+                <span class="secao-sobretitulo">Encontre o seu estilo</span>
+                <h2 class="secao-titulo" id="tituloCategorias">Compre por categoria</h2>
+                <p class="secao-descricao">São 40 produtos divididos em 4 categorias para decorar cada cantinho da sua casa.</p>
+            </div>
+
+            <div class="grade-categorias">
+                <a href="decoarvore.html" class="botao-categoria revelar">
+                    <span class="categoria-figura">
+                        <img src="../img/arvore.png" alt="Enfeites para árvore de Natal">
+                    </span>
+                    <span class="titulo-secao">Decoração de Árvore</span>
+                    <span class="categoria-contagem">10 produtos</span>
+                </a>
+
+                <a href="interno.html" class="botao-categoria revelar">
+                    <span class="categoria-figura">
+                        <img src="../img/produtos/casinha-relogio.jpg" alt="Decoração natalina para interiores">
+                    </span>
+                    <span class="titulo-secao">Decoração Interna</span>
+                    <span class="categoria-contagem">10 produtos</span>
+                </a>
+
+                <a href="externo.html" class="botao-categoria revelar">
+                    <span class="categoria-figura">
+                        <img src="../img/externo.png" alt="Decoração natalina para áreas externas">
+                    </span>
+                    <span class="titulo-secao">Decoração Externa</span>
+                    <span class="categoria-contagem">10 produtos</span>
+                </a>
+
+                <a href="meias-e-globos.html" class="botao-categoria revelar">
+                    <span class="categoria-figura">
+                        <img src="../img/meias.png" alt="Meias e globos de neve natalinos">
+                    </span>
+                    <span class="titulo-secao">Meias e Globos de Neve</span>
+                    <span class="categoria-contagem">10 produtos</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ============================ DESTAQUES ============================ -->
+        <section class="secao secao-destaques" aria-labelledby="tituloDestaques">
+            <div class="secao-cabecalho revelar">
+                <span class="secao-sobretitulo">Selecionados para você</span>
+                <h2 class="secao-titulo" id="tituloDestaques">Destaques de Natal</h2>
+                <p class="secao-descricao">Os queridinhos da temporada, prontos para deixar sua casa ainda mais mágica.</p>
+            </div>
+
+            <div class="catalogo-grid" id="destaques-grid" aria-live="polite"></div>
+
+            <div class="centro revelar">
+                <a class="btn btn-primario btn-grande" href="decoarvore.html">Explorar o catálogo</a>
+            </div>
+        </section>
+
+        <!-- ============================ SEGUNDO CARROSSEL / OFERTAS ============================ -->
+        <section class="secao secao-promocoes" id="acomodacoes" aria-labelledby="tituloPromocoes">
+            <div class="secao-cabecalho revelar">
+                <span class="secao-sobretitulo">Promoções da semana</span>
+                <h2 class="secao-titulo" id="tituloPromocoes">Ofertas que aquecem o coração</h2>
+                <p class="secao-descricao">Descontos especiais em peças selecionadas. Aproveite antes que o Natal chegue!</p>
+            </div>
+
+            <div class="slides-container">
+                <div class="slides" id="slide">
+                    <article class="slide-item">
+                        <div class="slide-conteudo">
+                            <div class="slide-imagem">
+                                <img src="../img/renabrilhante.png" alt="Rena decorativa iluminada para área externa" class="card-image">
+                            </div>
+                            <div class="slide-info">
+                                <span class="slide-etiqueta">-20%</span>
+                                <h3 class="card-title">Rena Luminosa 60 cm</h3>
+                                <p>Um toque de luz para a fachada. De <s>R$ 179,90</s> por R$ 149,90.</p>
+                                <a class="btn btn-claro" href="externo.html">Aproveitar oferta</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="slide-item">
+                        <div class="slide-conteudo">
+                            <div class="slide-imagem">
+                                <img src="../img/produtos/globos/globo-pinheiro.png" alt="Globo de neve com pinheiro dentro" class="card-image">
+                            </div>
+                            <div class="slide-info">
+                                <span class="slide-etiqueta">Destaque</span>
+                                <h3 class="card-title">Globo de Neve Pinheiro</h3>
+                                <p>O mais querido da loja, com neve artificial em suspensão.</p>
+                                <a class="btn btn-claro" href="meias-e-globos.html">Ver categoria</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="slide-item">
+                        <div class="slide-conteudo">
+                            <div class="slide-imagem">
+                                <img src="../img/produtos/casinha-relogio.jpg" alt="Casinha relógio decorativa de Natal" class="card-image">
+                            </div>
+                            <div class="slide-info">
+                                <span class="slide-etiqueta">Novidade</span>
+                                <h3 class="card-title">Casinha Relógio</h3>
+                                <p>Um charme para aparadores e estantes nesta época do ano.</p>
+                                <a class="btn btn-claro" href="interno.html">Ver categoria</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <button class="btn-carrossel prev" id="btnPrev" type="button" aria-label="Promoção anterior">‹</button>
+                <button class="btn-carrossel next" id="btnNext" type="button" aria-label="Próxima promoção">›</button>
+                <div class="carrossel-dots" id="dotsContainer" aria-label="Selecionar promoção"></div>
+            </div>
+        </section>
+
+        <!-- ============================ NOSSA HISTÓRIA (SOBRE) ============================ -->
+        <section class="secao secao-sobre" id="sobre" aria-labelledby="tituloHistoria">
+            <div class="sobre-grid">
+                <div class="sobre-texto revelar">
+                    <span class="secao-sobretitulo">Nossa história</span>
+                    <h2 class="secao-titulo" id="tituloHistoria">Do quintal da vó para a sua casa</h2>
+                    <p>
+                        Em 2014, a família Almeida começou a produzir enfeites natalinos à mão na garagem de casa,
+                        em Campinas. O que era apenas uma forma de reunir parentes na véspera de Natal virou um
+                        pequeno ateliê e, depois, uma loja virtual.
+                    </p>
+                    <p>
+                        A X'mas Deco nasceu com a ideia de que decoração não é só enfeite: é memória. Cada bola,
+                        laço e globo de neve é escolhido pensando no cheiro de pinheiro, no som das risadas e na
+                        mesa cheia. Hoje atendemos todo o Brasil, mas o cuidado continua artesanal.
+                    </p>
+                    <p>
+                        Este site é o projeto final de Desenvolvimento Web do grupo, inspirado na loja fictícia
+                        criada para o trabalho. Todo o catálogo, a história e os depoimentos são ilustrativos.
+                    </p>
+                    <a class="btn btn-primario" href="decoarvore.html">Conhecer os produtos</a>
+                </div>
+
+                <div class="sobre-imagem revelar">
+                    <img src="../img/arvore-de-natal-decorada-01.jpg" alt="Árvore de Natal decorada com bolas e laços">
+                    <div class="sobre-detalhe">
+                        <strong>10</strong>
+                        <span>Natais criando memórias</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="secao secao-valores" aria-labelledby="tituloValores">
+            <div class="secao-cabecalho revelar">
+                <span class="secao-sobretitulo">O que nos move</span>
+                <h2 class="secao-titulo" id="tituloValores">Missão, visão e valores</h2>
+            </div>
+
+            <div class="valores-grid">
+                <article class="card-valor revelar">
+                    <span class="card-valor-icone" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="3" x2="12" y2="8"></line><line x1="12" y1="16" x2="12" y2="21"></line><line x1="3" y1="12" x2="8" y2="12"></line><line x1="16" y1="12" x2="21" y2="12"></line></svg>
+                    </span>
+                    <h3>Missão</h3>
+                    <p>Tornar o Natal de cada família mais bonito e afetivo, com decoração acessível, durável e cheia de personalidade.</p>
+                </article>
+
+                <article class="card-valor revelar">
+                    <span class="card-valor-icone" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8-6.1-3.5-6.1 3.5 1.4-6.8L2.2 9.1l6.9-.8z"></path></svg>
+                    </span>
+                    <h3>Visão</h3>
+                    <p>Ser referência nacional em decoração natalina até 2030, sem perder o cuidado artesanal e o atendimento próximo.</p>
+                </article>
+
+                <article class="card-valor revelar">
+                    <span class="card-valor-icone" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C7 16.5 3 13.3 3 9.2 3 6.3 5.3 4 8.2 4c1.6 0 3 .8 3.8 2 .8-1.2 2.2-2 3.8-2C18.7 4 21 6.3 21 9.2c0 4.1-4 7.3-9 11.8z"></path></svg>
+                    </span>
+                    <h3>Valores</h3>
+                    <p>Afeto, sustentabilidade, transparência e criatividade. Preferimos embalagens recicláveis e fornecedores locais.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="secao secao-numeros" aria-label="Números da loja">
+            <div class="numeros-grid revelar">
+                <div class="numero-item">
+                    <strong>10</strong>
+                    <span>anos de história</span>
+                </div>
+                <div class="numero-item">
+                    <strong>40</strong>
+                    <span>produtos no catálogo</span>
+                </div>
+                <div class="numero-item">
+                    <strong>4</strong>
+                    <span>categorias de decoração</span>
+                </div>
+                <div class="numero-item">
+                    <strong>3.000+</strong>
+                    <span>famílias atendidas</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="secao secao-linha-tempo" aria-labelledby="tituloLinhaTempo">
+            <div class="secao-cabecalho revelar">
+                <span class="secao-sobretitulo">Nossa trajetória</span>
+                <h2 class="secao-titulo" id="tituloLinhaTempo">Um Natal de cada vez</h2>
+            </div>
+
+            <ol class="linha-tempo">
+                <li class="revelar">
+                    <span class="linha-ano">2014</span>
+                    <div>
+                        <h3>O primeiro ateliê</h3>
+                        <p>A família começa a produzir laços e bolas decoradas na garagem de casa.</p>
+                    </div>
+                </li>
+                <li class="revelar">
+                    <span class="linha-ano">2018</span>
+                    <div>
+                        <h3>A loja virtual</h3>
+                        <p>O catálogo cresce e a X'mas Deco passa a vender para todo o estado de São Paulo.</p>
+                    </div>
+                </li>
+                <li class="revelar">
+                    <span class="linha-ano">2021</span>
+                    <div>
+                        <h3>Coleção de globos de neve</h3>
+                        <p>Lançamos a linha artesanal de globos de neve, hoje a mais querida da loja.</p>
+                    </div>
+                </li>
+                <li class="revelar">
+                    <span class="linha-ano">2026</span>
+                    <div>
+                        <h3>40 produtos e um site novo</h3>
+                        <p>Chegamos a quatro categorias de decoração e a este projeto de Desenvolvimento Web feito em equipe.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <section class="secao secao-equipe" aria-labelledby="tituloEquipe">
+            <div class="equipe-grid">
+                <div class="equipe-imagem revelar">
+                    <img src="../img/osdevs.png" alt="Ilustração de três duendes natalinos representando a equipe">
+                </div>
+
+                <div class="equipe-conteudo revelar">
+                    <span class="secao-sobretitulo">Quem faz acontecer</span>
+                    <h2 class="secao-titulo" id="tituloEquipe">Nossa equipe</h2>
+                    <p>Três primos, três jeitos de enxergar o Natal e uma vontade em comum: criar coisas bonitas e fazer as pessoas sorrirem.</p>
+
+                    <div class="membros">
+                        <article class="membro">
+                            <span class="membro-avatar" aria-hidden="true">IA</span>
+                            <div>
+                                <h3>Isadora Almeida</h3>
+                                <p>Criação e curadoria</p>
+                            </div>
+                        </article>
+                        <article class="membro">
+                            <span class="membro-avatar" aria-hidden="true">NA</span>
+                            <div>
+                                <h3>Nicolas Almeida</h3>
+                                <p>Desenvolvimento e suporte</p>
+                            </div>
+                        </article>
+                        <article class="membro">
+                            <span class="membro-avatar" aria-hidden="true">YA</span>
+                            <div>
+                                <h3>Yasmin Almeida</h3>
+                                <p>Design e atendimento</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================ GALERIA ============================ -->
+        <section class="secao secao-galeria" aria-labelledby="tituloGaleria">
+            <div class="secao-cabecalho revelar">
+                <span class="secao-sobretitulo">Inspire-se</span>
+                <h2 class="secao-titulo" id="tituloGaleria">Galeria de decorações</h2>
+                <p class="secao-descricao">Clique em uma imagem para ampliar. Use as setas do teclado ou os botões para navegar.</p>
+            </div>
+
+            <div class="galeria-grid">
+                <button class="galeria-item revelar" type="button" data-lightbox="../img/arvore.png" data-legenda="Decoração de árvore — bolas, estrelas e laços">
+                    <img src="../img/arvore.png" alt="Decoração de árvore de Natal" loading="lazy">
+                    <span>Árvore</span>
+                </button>
+                <button class="galeria-item revelar" type="button" data-lightbox="../img/produtos/casinha-relogio.jpg" data-legenda="Decoração interna — peças para mesa e aparador">
+                    <img src="../img/produtos/casinha-relogio.jpg" alt="Decoração interna de Natal" loading="lazy">
+                    <span>Interna</span>
+                </button>
+                <button class="galeria-item revelar" type="button" data-lightbox="../img/externo.png" data-legenda="Decoração externa — fachadas e jardins">
+                    <img src="../img/externo.png" alt="Decoração externa de Natal" loading="lazy">
+                    <span>Externa</span>
+                </button>
+                <button class="galeria-item revelar" type="button" data-lightbox="../img/meias.png" data-legenda="Meias e globos de neve artesanais">
+                    <img src="../img/meias.png" alt="Meias e globos de neve" loading="lazy">
+                    <span>Meias e Globos</span>
+                </button>
+                <button class="galeria-item revelar" type="button" data-lightbox="../img/papainoelpropaganda.png" data-legenda="Campanha de Natal — Boas Festas!">
+                    <img src="../img/papainoelpropaganda.png" alt="Papai Noel em clima de Natal" loading="lazy">
+                    <span>Boas Festas</span>
+                </button>
+                <button class="galeria-item revelar" type="button" data-lightbox="../img/meninapropaganda.png" data-legenda="Campanha de Natal — motivos para sorrir">
+                    <img src="../img/meninapropaganda.png" alt="Menina sorridente no Natal" loading="lazy">
+                    <span>Campanha</span>
+                </button>
+                <button class="galeria-item revelar" type="button" data-lightbox="../img/renabrilhante.png" data-legenda="Rena luminosa para decoração externa">
+                    <img src="../img/renabrilhante.png" alt="Rena luminosa" loading="lazy">
+                    <span>Rena de LED</span>
+                </button>
+                <button class="galeria-item revelar" type="button" data-lightbox="../img/biscoito.png" data-legenda="Biscoito decorativo artesanal">
+                    <img src="../img/biscoito.png" alt="Biscoito decorativo de Natal" loading="lazy">
+                    <span>Artesanal</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ============================ CHAMADA FINAL ============================ -->
+        <section class="chamada-final revelar" aria-label="Convite para conhecer a loja">
+            <div class="chamada-conteudo">
+                <span class="secao-sobretitulo">A magia está chegando</span>
+                <h2>Pronto para montar o Natal perfeito?</h2>
+                <p>Explore as categorias ou fale com a nossa equipe para montar um projeto especial.</p>
+                <div class="chamada-acoes">
+                    <a class="btn btn-primario btn-grande" href="decoarvore.html">Explorar catálogo</a>
+                    <a class="btn btn-fantasma btn-grande" href="contato.html">Falar com a loja</a>
+                </div>
+            </div>
+            <img src="../img/papainoeldesktop.png" alt="" class="chamada-imagem" aria-hidden="true" loading="lazy">
+        </section>
+
+    </main>
+
+    <!-- ============================ LIGHTBOX DA GALERIA ============================ -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galeria ampliada" aria-hidden="true">
+        <button class="lightbox-fechar" id="fecharLightbox" type="button" aria-label="Fechar galeria">&times;</button>
+        <button class="lightbox-seta anterior" id="lightboxAnterior" type="button" aria-label="Imagem anterior">‹</button>
+        <figure class="lightbox-figura">
+            <img id="lightboxImagem" src="" alt="">
+            <figcaption id="lightboxLegenda"></figcaption>
+        </figure>
+        <button class="lightbox-seta proxima" id="lightboxProxima" type="button" aria-label="Próxima imagem">›</button>
+    </div>
+
+    <!-- ============================ RODAPÉ ============================ -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-marca">
+                <img src="../img/logo.png" alt="Logo da X'mas Deco" class="footer-logo">
+                <p>Decoração natalina para transformar cada detalhe da sua casa em memória afetiva.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/xmasdeco" target="_blank" rel="noopener" aria-label="Instagram da X'mas Deco">Instagram</a>
+                    <a href="https://www.facebook.com/xmasdeco" target="_blank" rel="noopener" aria-label="Facebook da X'mas Deco">Facebook</a>
+                    <a href="https://wa.me/5519993801902" target="_blank" rel="noopener" aria-label="WhatsApp da X'mas Deco">WhatsApp</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Navegação</h3>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="index.html#catalogo">Catálogo</a></li>
+                    <li><a href="index.html#sobre">Nossa História</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Categorias</h3>
+                <ul>
+                    <li><a href="decoarvore.html">Decoração de Árvore</a></li>
+                    <li><a href="interno.html">Decoração Interna</a></li>
+                    <li><a href="externo.html">Decoração Externa</a></li>
+                    <li><a href="meias-e-globos.html">Meias e Globos</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Fale com a gente</h3>
+                <ul class="footer-contato">
+                    <li>E-mail: <a href="mailto:contato@xmasdeco.com">contato@xmasdeco.com</a></li>
+                    <li>Telefone: <a href="tel:+5519993801902">(19) 99380-1902</a></li>
+                    <li>Endereço: Rua das Acácias, 122 — Campinas/SP</li>
+                    <li>Horário: seg. a sáb., das 9h às 18h</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-base">
+            <p>© <span data-ano>2026</span> X'mas Deco. Projeto de Desenvolvimento Web — feito por Isadora Almeida, Nicolas Almeida e Yasmin Almeida.</p>
+            <p>Créditos de imagens e sons no arquivo <strong>README.md</strong> do projeto · <a href="#topo">Voltar ao topo</a></p>
+        </div>
+    </footer>
+
+    <div class="music-controls" aria-label="Controles de música">
+        <button id="btnTocar" class="music-button" type="button" aria-label="Tocar música" title="Tocar música">▶</button>
+        <button id="btnParar" class="music-button" type="button" aria-label="Parar música" title="Parar música">■</button>
+    </div>
+
+    <button id="btnInicio" class="voltar-inicio" type="button" aria-label="Voltar ao início" title="Voltar ao topo">↑</button>
+
+    <audio id="musicaNatal" loop preload="none">
+        <source src="../audio/snowmansia.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+    </audio>
+
+    <script src="../js/produtos.js"></script>
+    <script src="../js/catalogo.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>
