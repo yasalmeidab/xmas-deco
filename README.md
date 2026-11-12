@@ -4,8 +4,7 @@ Site de uma loja fictícia de decoração natalina, desenvolvido como projeto fi
 
 ## Como abrir o site
 
-O site é estático (HTML, CSS e JavaScript puro), sem necessidade de instalação de dependências.
-
+O site é estático (HTML, CSS e JavaScript)
 1. Abra a pasta `site` no terminal.
 2. Inicie um servidor local:
 
