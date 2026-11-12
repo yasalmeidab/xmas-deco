@@ -1,87 +1,88 @@
-# X'mas Deco 🎄
+# X'mas Deco — Magia de Natal em cada detalhe
 
-Projeto final de Desenvolvimento Web — loja virtual de **decoração natalina** construída
-exclusivamente com **HTML, CSS e JavaScript puro** (sem frameworks ou bibliotecas).
+Site de uma loja fictícia de decoração natalina, desenvolvido como projeto final da disciplina de Desenvolvimento Web. O visual mistura a estética artesanal do projeto **xmas-deco** com a base e os efeitos do projeto **AV2WEB4**.
 
-**Equipe:** Isadora Almeida, Nicolas Almeida e Yasmin Almeida.
+## Como abrir o site
 
-## Estrutura de pastas
+O site é estático (HTML, CSS e JavaScript puro), sem necessidade de instalação de dependências.
 
-```
-├── index.html        → redireciona para html/index.html (GitHub Pages)
-├── html/             → páginas do site
-│   ├── index.html    → página inicial (catálogo, destaques, promoções e "Nossa História")
-│   ├── decoarvore.html     → categoria: Decoração de Árvore
-│   ├── interno.html        → categoria: Decoração Interna
-│   ├── externo.html        → categoria: Decoração Externa
-│   ├── meias-e-globos.html → categoria: Meias e Globos de Neve
-│   └── contato.html        → formulário de contato e informações da loja
+1. Abra a pasta `site` no terminal.
+2. Inicie um servidor local:
+
+   ```bash
+   py -m http.server 8765
+   ```
+
+3. Acesse `http://localhost:8765/` no navegador. O `index.html` da raiz redireciona para `html/index.html`.
+
+Também é possível abrir `html/index.html` diretamente, mas o servidor local garante o carregamento correto do vídeo, do áudio e das imagens.
+
+## Estrutura do projeto
+
+```text
+site/
+├── index.html                  → entrada do site (redireciona para a Home)
+├── html/
+│   ├── index.html              → Home
+│   ├── decoarvore.html         → Decoração de Árvore
+│   ├── interno.html            → Decoração Interna
+│   ├── externo.html            → Decoração Externa
+│   ├── meias-e-globos.html     → Meias e Globos de Neve
+│   └── contato.html            → Contato
 ├── css/
-│   ├── style.css           → estilos principais
-│   └── responsividade.css  → media queries e ajustes responsivos
+│   ├── style.css               → estilos gerais e componentes
+│   └── responsividade.css      → media queries e ajustes por tela
 ├── js/
-│   ├── produtos.js   → base de dados dos 40 produtos (4 categorias)
-│   ├── catalogo.js   → catálogo, modal de produto e carrinho (localStorage)
-│   └── script.js     → carrosséis, parallax, neve, contador, música, lightbox e formulário
-├── img/              → imagens (otimizadas)
-├── audio/            → música ambiente do site
+│   ├── produtos.js             → dados dos quatro catálogos
+│   ├── catalogo.js             → vitrine, busca da navbar e carrinho
+│   └── script.js               → abertura em vídeo, carrosséis, neve, música etc.
+├── img/                        → imagens do site
+├── audio/
+│   └── snowmansia.mp3          → música de fundo
+└── video-entrada/
+    └── animaçãopapainoel.mp4   → vídeo de abertura em tela cheia
 ```
+
+## Páginas
+
+| Página | Conteúdo |
+| --- | --- |
+| **Home** | Carrossel principal com parallax, botões das categorias, ofertas em carrossel, história da loja, missão/visão/valores e equipe. |
+| **Decoração de Árvore** | Vitrine com 12 enfeites para árvore. |
+| **Decoração Interna** | Vitrine com 12 itens para ambientes internos. |
+| **Decoração Externa** | Vitrine com 13 itens para fachada, jardim e entrada. |
+| **Meias e Globos de Neve** | Vitrine com 13 meias e globos decorativos. |
+| **Contato** | Formulário validado no navegador e informações da loja. |
 
 ## Funcionalidades
 
-- Carrossel principal com **efeito parallax** e neve animada (persistente via `localStorage`);
-- Catálogo por categoria com busca, filtros, ordenação e busca global pela URL (`?termo=`);
-- Modal de detalhes do produto e **carrinho de compras** salvo no navegador;
-- Contagem regressiva para o Natal, música ambiente e galeria com lightbox;
-- Validação de formulário de contato com máscara de telefone e contador de caracteres;
-- Layout totalmente responsivo (menu mobile, impressão e `prefers-reduced-motion`).
+- **Abertura em vídeo:** toda visita começa com o vídeo `animaçãopapainoel.mp4` cobrindo a tela inteira em computadores e celulares. A abertura é **silenciosa** e pode ser encerrada pelo botão **Pular abertura** ou automaticamente ao final do vídeo.
+- **Neve animada:** efeito de neve no carrossel principal, com botão para ligar e desligar.
+- **Carrosséis:** destaque da Home e ofertas, com setas, indicadores, autoplay e arraste no celular.
+- **Parallax:** movimento suave das imagens do primeiro carrossel ao rolar a página.
+- **Busca unificada:** a barra de pesquisa da navbar procura nos quatro catálogos e leva o usuário à página e ao produto correspondentes.
+- **Carrinho:** painel lateral com adição, remoção e alteração de quantidade. O conteúdo é salvo no `localStorage`.
+- **Música de fundo:** `snowmansia.mp3` com botões de tocar, pausar e parar. O áudio da abertura é sempre desativado.
+- **Contagem regressiva:** dias, horas, minutos e segundos para o Natal.
+- **Formulário de contato:** validação de nome, e-mail, telefone, assunto e mensagem, com máscara de telefone e contador de caracteres. O envio é uma simulação.
+- **Acessibilidade:** link para pular o conteúdo, textos alternativos, foco visível, `aria-label` nos controles e respeito à preferência `prefers-reduced-motion`.
+- **Responsividade:** layout adaptado para desktops, tablets e celulares, incluindo o vídeo de abertura em tela cheia.
 
-## Créditos de imagens e sons
+## Tecnologias
 
-### Imagens do acervo do grupo
+- HTML5
+- CSS3 (variáveis, Grid, Flexbox, animações e media queries)
+- JavaScript puro (Vanilla JS), sem bibliotecas
+- `localStorage` para persistir o carrinho
 
-Logo, fundos, ilustrações das categorias, banners de campanha (Papai Noel e menina),
-imagem da equipe e fotos de produtos marcadas como "acervo" foram produzidas, editadas
-ou geradas para este trabalho escolar. Podem ser usadas apenas para fins educacionais.
+## Observações
 
-- `img/logo.png`, `img/fundohome.png`, `img/fundohome.jpeg` e `img/fundocontainerpropaganda.png` — identidade visual e fundos do projeto.
-- `img/arvore.png`, `img/decoarvore.png`, `img/interno.png`, `img/externo.png`, `img/meias.png`, `img/peluciasdedecoracao.png` — ilustrações das categorias.
-- `img/papainoelpropaganda.png`, `img/meninapropaganda.png`, `img/papainoeldesktop.png` e `img/osdevs.png` — banners e ilustração da equipe.
-- `img/fundoverde.jpeg` — fundo do carrossel de ofertas.
-- `img/biscoito.png` e `img/renabrilhante.png` — fotos decorativas usadas no carrossel e no catálogo.
+- As imagens de produtos externos são carregadas por URLs públicas e podem deixar de responder se os sites de origem as removerem.
+- O link `img/image2.png` (avatar do Nicolas) não existe no pacote original; a imagem é ocultada automaticamente pelo `onerror` da própria página.
+- O projeto é acadêmico: compras, pedidos e mensagens são apenas simulações.
 
-### Fotos de produtos de lojas parceiras
+## Créditos
 
-Algumas fotos do catálogo foram obtidas em páginas públicas de lojas e marketplaces,
-exclusivamente para ilustrar este projeto sem fins comerciais. Os direitos continuam
-pertencendo aos autores e às lojas originais.
+Desenvolvido por **Isadora Almeida**, **Nicolas Almeida** e **Yasmin Almeida**.
 
-- [Bola de Natal listrada vermelha](https://cdn.awsli.com.br/1000x1000/2765/2765888/produto/295547971/bola-de-natal-listras-vermelho-10cm---4-un-0-g8ytcnsln3.jpg) — CDN AWS/Loja Integrada.
-- [Laço dourado com glitter](https://cdn.leroymerlin.com.br/products/enfeite_arvore_natal_laco_dourado_com_glitter_16cm_4_unidades_1570790908_fa7e_600x600.jpg) — Leroy Merlin.
-- [Papai Noel de vidro](https://http2.mlstatic.com/D_NQ_NP_845260-MLB113800350628_072026-O-1--mini-papai-noel-pendente-decorar-arvore-natal-9cm.webp) — Mercado Livre.
-- [Pinha prateada](https://http2.mlstatic.com/D_NQ_NP_772924-MLB101926223611_122025-O.webp) — Mercado Livre.
-- [Festão verde](https://static.welban.com.br/public/welban/imagens/produtos/festao-verde-5cm-x-5m-natalino-impulsetto-636bfc3e91828.jpg) — Welban.
-- [Festão branco holográfico](https://images.tcdn.com.br/img/img_prod/388802/festo_hologrfico_branco_fino_natal_luxo_180m_x_5_1_20260506114716_b89a476c7dbd.jpg) — Loja Integrada.
-- [Rena de cristal](https://cdn.awsli.com.br/761/761999/produto/373480799/1084074-nz30l97u19.jpg) — CDN AWS/Loja Integrada.
-- [Bola dourada com glitter](https://http2.mlstatic.com/D_NQ_NP_914669-MLB109980993179_042026-O-bola-natalina-grande-enfeite-arvore-natal-dourada-15cm.webp) — Mercado Livre.
-- [Mini presente para árvore](https://nilmaraquintela.com.br/wp-content/uploads/2019/11/IMG_2060.jpg) — Nilmara Quintela.
-- [Festão dourado](https://static.welban.com.br/public/welban/imagens/produtos/festao-metaloide-dourado-9cm-x-2m-natalino-global-63694f000cf1c.jpg) — Welban.
-- [Bolas brancas](https://m.media-amazon.com/images/I/71TlTP-QUXL._AC_SX522_.jpg) — Amazon.
-- [Estrela de LED dourada](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcAKzyE167uRYrA0cQh1rL8o_1ZgmXtXYubvOgjipWoA&s=10) — Google Imagens.
-
-### Música
-
-**"Snowman" — Sia**, reproduzida em versão instrumental/remix a partir do arquivo
-`audio/snowmansia.mp3`. A canção pertence à Sia e à Sony Music. O uso aqui é
-apenas educacional, sem fins comerciais, como parte de um trabalho escolar.
-
-> Se o projeto for publicado comercialmente, a faixa deve ser substituída por uma
-> música livre de direitos autorais.
-
-### Tecnologias e recursos
-
-- HTML5 semântico, CSS3 (Flexbox, Grid, variáveis, animações e media queries) e JavaScript puro.
-- Nenhum framework, biblioteca ou construtor de sites foi utilizado.
-- Fontes do sistema (Georgia e Arial/Segoe UI), sem dependência de fontes externas.
-- Ícones em SVG embutido (busca, carrinho, neve e vantagens).
-- Imagens de globos de neve compostas a partir das fotos do catálogo para este projeto.
+Projeto de Desenvolvimento Web — X'mas Deco, 2026.

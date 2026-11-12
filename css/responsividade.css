@@ -1149,3 +1149,126 @@
         text-decoration: underline;
     }
 }
+
+/* ==================== 8. AJUSTES RESPONSIVOS DA BASE AV2WEB4 ==================== */
+
+@media (max-width: 900px) {
+    .santa-img {
+        width: 640px;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-carousel-container,
+    .carousel-track,
+    .carousel-slide,
+    .slide-content {
+        min-height: 370px;
+    }
+
+    .slide-content {
+        padding: 0;
+    }
+
+    .santa-img {
+        width: min(450px, 100vw);
+    }
+
+    .grade-categorias {
+        gap: 18px;
+        margin-top: 24px;
+        padding: 14px;
+    }
+
+    .botao-categoria img {
+        width: min(100%, 190px);
+    }
+
+    .botao-categoria .titulo-secao {
+        margin-bottom: 18px;
+        font-size: 0.98rem;
+    }
+
+    .botao-categoria .titulo-secao::before,
+    .botao-categoria .titulo-secao::after {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 420px) {
+    .banner-carousel-container,
+    .carousel-track,
+    .carousel-slide,
+    .slide-content {
+        min-height: 330px;
+    }
+
+    .santa-img {
+        width: 100vw;
+    }
+
+    .grade-categorias {
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .botao-categoria .titulo-secao {
+        font-size: 0.86rem;
+    }
+
+    .botao-categoria .titulo-secao::before,
+    .botao-categoria .titulo-secao::after {
+        margin-inline: 4px;
+        font-size: 13px;
+    }
+}
+
+/* ==================== 9. VITRINE DAS PÁGINAS DE CATEGORIA ==================== */
+
+@media (max-width: 768px) {
+    .catalogo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+        gap: 13px;
+        padding: 16px 12px 36px;
+    }
+
+    .card-produto {
+        padding: 10px;
+    }
+
+    .produto-img {
+        height: 135px;
+    }
+}
+
+@media (max-width: 420px) {
+    .catalogo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .btn-comprar {
+        padding: 8px 6px;
+        font-size: 0.82rem;
+    }
+}
+
+/* ==================== 10. ABERTURA EM VÍDEO ==================== */
+
+@media (max-width: 560px) {
+    .intro-video-controles {
+        bottom: max(18px, env(safe-area-inset-bottom));
+        gap: 8px;
+    }
+
+    .intro-video button {
+        min-height: 40px;
+        padding: 9px 16px;
+        font-size: 0.82rem;
+    }
+}
+
+@media (max-height: 520px) and (orientation: landscape) {
+    .intro-video-controles {
+        bottom: 10px;
+    }
+}

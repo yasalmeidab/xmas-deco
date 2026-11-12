@@ -10,6 +10,79 @@ document.addEventListener("DOMContentLoaded", function () {
     "use strict";
 
     /* =====================================================================
+       0. ABERTURA EM VÍDEO (TELA CHEIA)
+       ===================================================================== */
+
+    const intro = document.getElementById("introVideo");
+
+    if (intro) {
+        const videoIntro = document.getElementById("introVideoMidia");
+        const botaoPularIntro = document.getElementById("introVideoPular");
+        let introEncerrada = false;
+        let temporizadorFimIntro = null;
+
+        document.body.classList.add("intro-ativa");
+
+        function encerrarIntro() {
+            if (introEncerrada) return;
+            introEncerrada = true;
+            window.clearTimeout(temporizadorFimIntro);
+
+            if (videoIntro) {
+                try { videoIntro.pause(); } catch (erro) { /* ignora */ }
+            }
+
+            document.body.classList.remove("intro-ativa");
+            intro.classList.add("saindo");
+            window.setTimeout(function () {
+                intro.remove();
+            }, 500);
+
+            /* A música de fundo só começa depois que a abertura termina. */
+            document.dispatchEvent(new CustomEvent("xmas:introEncerrada"));
+        }
+
+        function programarFimDaIntro() {
+            if (!videoIntro || introEncerrada) return;
+            window.clearTimeout(temporizadorFimIntro);
+            const duracao = Number.isFinite(videoIntro.duration) ? videoIntro.duration : 15;
+            temporizadorFimIntro = window.setTimeout(encerrarIntro, Math.max(3000, duracao * 1000 + 1200));
+        }
+
+        function iniciarVideoIntro() {
+            if (!videoIntro) {
+                encerrarIntro();
+                return;
+            }
+
+            /* A abertura é sempre silenciosa. O áudio do site continua
+               disponível nos controles de música, fora do vídeo. */
+            videoIntro.muted = true;
+            videoIntro.volume = 0;
+
+            const tentativa = videoIntro.play();
+            if (tentativa && typeof tentativa.catch === "function") {
+                tentativa.catch(function () {
+                    /* Autoplay bloqueado: o usuário pode usar "Pular abertura". */
+                });
+            }
+        }
+
+        if (videoIntro) {
+            videoIntro.addEventListener("playing", programarFimDaIntro);
+            videoIntro.addEventListener("ended", encerrarIntro);
+            videoIntro.addEventListener("error", encerrarIntro);
+        }
+
+        botaoPularIntro?.addEventListener("click", encerrarIntro);
+        iniciarVideoIntro();
+
+        window.setTimeout(function () {
+            if (!introEncerrada) botaoPularIntro?.focus({ preventScroll: true });
+        }, 120);
+    }
+
+    /* =====================================================================
        1. MENU MOBILE E NAVEGAÇÃO
        ===================================================================== */
 
@@ -32,15 +105,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    const caminhoAtual = window.location.pathname.split("/").pop() || "index.html";
-    document.querySelectorAll(".nav-links a").forEach(function (link) {
-        const destino = (link.getAttribute("href") || "").split("#")[0];
-        if (destino && destino === caminhoAtual) {
-            link.classList.add("ativo");
-            link.setAttribute("aria-current", "page");
-        }
-    });
-
     /* Sombra suave na navbar ao rolar a página */
     const cabecalho = document.querySelector(".site-nav");
     function atualizarCabecalho() {
@@ -58,6 +122,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const botaoNeve = document.getElementById("btnNeve");
     let intervaloNeve = null;
     let neveLigada = false;
+    let temporizadorInicioNeve = null;
+    const temporizadoresFlocos = [];
+
+    /* CORREÇÃO (guia, seção 14): no xmas-deco, ligarNeve() procurava um
+       elemento ".rotulo-neve" que não existe no botão. O null.textContent
+       lançava um erro, o setInterval nunca era criado e a neve parava de
+       funcionar. Aqui o botão não depende de nenhum elemento interno, e os
+       temporizadores pendentes são cancelados ao desligar. */
 
     function criarFloco() {
         if (!areaNeve || !neveLigada) return;
@@ -88,10 +160,9 @@ document.addEventListener("DOMContentLoaded", function () {
         botaoNeve.classList.add("ativo");
         botaoNeve.setAttribute("aria-pressed", "true");
         botaoNeve.setAttribute("title", "Desativar neve");
-        botaoNeve.querySelector(".rotulo-neve").textContent = "Neve";
 
         for (let i = 0; i < 12; i++) {
-            window.setTimeout(criarFloco, i * 140);
+            temporizadoresFlocos.push(window.setTimeout(criarFloco, i * 140));
         }
         window.clearInterval(intervaloNeve);
         intervaloNeve = window.setInterval(criarFloco, 260);
@@ -102,6 +173,10 @@ document.addEventListener("DOMContentLoaded", function () {
     function desligarNeve() {
         if (!areaNeve || !botaoNeve) return;
         neveLigada = false;
+        window.clearTimeout(temporizadorInicioNeve);
+        while (temporizadoresFlocos.length) {
+            window.clearTimeout(temporizadoresFlocos.pop());
+        }
         areaNeve.classList.remove("ativa");
         areaNeve.setAttribute("aria-hidden", "true");
         botaoNeve.classList.remove("ativo");
@@ -128,7 +203,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const movimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         if (prefereNeve === "ligada" && !movimentoReduzido) {
-            window.setTimeout(ligarNeve, 700);
+            temporizadorInicioNeve = window.setTimeout(ligarNeve, 700);
+        } else {
+            botaoNeve.classList.remove("ativo");
+            botaoNeve.setAttribute("aria-pressed", "false");
+            botaoNeve.setAttribute("title", "Ativar neve");
         }
     }
 
@@ -247,7 +326,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 agendado = false;
                 return;
             }
-            const movimento = Math.max(-35, Math.min(35, -posicao.top * 0.16));
+            /* Valores originais do AV2WEB4: deslocamento de até 50px, fator 0,25 */
+            const movimento = Math.max(-50, Math.min(50, -posicao.top * 0.25));
             imagensParallax.forEach(function (imagem) {
                 imagem.style.transform = "translate3d(0, " + movimento.toFixed(1) + "px, 0)";
             });
@@ -452,9 +532,11 @@ document.addEventListener("DOMContentLoaded", function () {
         musica.addEventListener("pause", atualizarBotoesMusica);
         musica.addEventListener("ended", atualizarBotoesMusica);
 
-        /* Só tenta tocar depois de uma interação do usuário, como exigem os navegadores. */
+        /* Só tenta tocar depois de uma interação do usuário, como exigem os navegadores.
+           Durante a abertura em vídeo, espera a intro terminar para não misturar os áudios. */
         function tentarTocarDepoisDeInteragir(evento) {
-            if (evento.target.closest(".music-controls")) return;
+            if (evento.target.closest && evento.target.closest(".music-controls")) return;
+            if (document.body.classList.contains("intro-ativa")) return;
             document.removeEventListener("click", tentarTocarDepoisDeInteragir);
             document.removeEventListener("keydown", tentarTocarDepoisDeInteragir);
             tocarMusica();
@@ -507,69 +589,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 elemento.classList.add("visivel");
             });
         }
-    }
-
-    /* =====================================================================
-       10. LIGHTBOX DA GALERIA (PÁGINA DE OFERTAS)
-       ===================================================================== */
-
-    const lightbox = document.getElementById("lightbox");
-    const imagemLightbox = document.getElementById("lightboxImagem");
-    const legendaLightbox = document.getElementById("lightboxLegenda");
-    const itensGaleria = Array.from(document.querySelectorAll("[data-lightbox]"));
-
-    if (lightbox && imagemLightbox && itensGaleria.length) {
-        let indiceGaleria = 0;
-
-        function mostrarImagemGaleria(indice) {
-            indiceGaleria = (indice + itensGaleria.length) % itensGaleria.length;
-            const item = itensGaleria[indiceGaleria];
-            const imagem = item.getAttribute("data-lightbox") || item.querySelector("img")?.src;
-            const legenda = item.getAttribute("data-legenda") || "";
-
-            imagemLightbox.src = imagem;
-            imagemLightbox.alt = legenda || "Imagem ampliada da galeria";
-            if (legendaLightbox) legendaLightbox.textContent = legenda;
-        }
-
-        function abrirLightbox(indice) {
-            mostrarImagemGaleria(indice);
-            lightbox.classList.add("aberto");
-            lightbox.setAttribute("aria-hidden", "false");
-            document.body.classList.add("sem-scroll");
-            document.getElementById("fecharLightbox").focus();
-        }
-
-        function fecharLightbox() {
-            lightbox.classList.remove("aberto");
-            lightbox.setAttribute("aria-hidden", "true");
-            document.body.classList.remove("sem-scroll");
-        }
-
-        itensGaleria.forEach(function (item, indice) {
-            item.addEventListener("click", function () {
-                abrirLightbox(indice);
-            });
-        });
-
-        document.getElementById("fecharLightbox")?.addEventListener("click", fecharLightbox);
-        document.getElementById("lightboxAnterior")?.addEventListener("click", function () {
-            mostrarImagemGaleria(indiceGaleria - 1);
-        });
-        document.getElementById("lightboxProxima")?.addEventListener("click", function () {
-            mostrarImagemGaleria(indiceGaleria + 1);
-        });
-
-        lightbox.addEventListener("click", function (evento) {
-            if (evento.target === lightbox) fecharLightbox();
-        });
-
-        document.addEventListener("keydown", function (evento) {
-            if (!lightbox.classList.contains("aberto")) return;
-            if (evento.key === "Escape") fecharLightbox();
-            if (evento.key === "ArrowLeft") mostrarImagemGaleria(indiceGaleria - 1);
-            if (evento.key === "ArrowRight") mostrarImagemGaleria(indiceGaleria + 1);
-        });
     }
 
     /* =====================================================================

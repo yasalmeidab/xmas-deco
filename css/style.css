@@ -27,9 +27,9 @@
     --texto: #302820;
     --texto-suave: #6b5c4d;
     --borda: rgba(71, 108, 64, 0.18);
-    --sombra-suave: 0 8px 22px rgba(45, 34, 22, 0.12);
-    --sombra-media: 0 14px 40px rgba(45, 34, 22, 0.18);
-    --sombra-forte: 0 24px 70px rgba(16, 44, 28, 0.28);
+    --sombra-suave: 0 8px 11px rgba(45, 34, 22,0.06);
+    --sombra-media: 0 14px 20px rgba(45, 34, 22,0.09);
+    --sombra-forte: 0 24px 35px rgba(16, 44, 28,0.14);
     --raio: 14px;
     --raio-grande: 24px;
     --transicao: 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -241,12 +241,12 @@ button {
     z-index: 60;
     width: 100%;
     background: linear-gradient(120deg, #3f6239 0%, var(--verde-oliva-escura) 45%, #355631 100%);
-    box-shadow: 0 3px 14px rgba(16, 44, 28, 0.18);
+    box-shadow: 0 3px 7px rgba(16, 44, 28,0.09);
     transition: box-shadow var(--transicao), background var(--transicao);
 }
 
 .site-nav.rolada {
-    box-shadow: 0 10px 28px rgba(16, 44, 28, 0.34);
+    box-shadow: 0 10px 14px rgba(16, 44, 28,0.17);
 }
 
 .nav-container {
@@ -275,7 +275,7 @@ button {
     display: block;
     width: 66px;
     height: auto;
-    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 3px 3px rgba(0, 0, 0,0.12));
 }
 
 .nav-toggle {
@@ -344,17 +344,21 @@ button {
     transition: transform var(--transicao);
 }
 
-.nav-links a:hover,
-.nav-links a:focus-visible,
-.nav-links a.ativo {
-    color: var(--branco);
-    background: rgba(255, 255, 255, 0.08);
-}
+/* CORREÇÃO (guia, seção 14): o destaque da navbar só aparece com o mouse
+   realmente sobre o link. No xmas-deco a classe .ativo (aplicada pelo JS ao
+   link da página atual) e o :focus-visible compartilhavam este estilo, e por
+   isso o botão ficava "em hover" sem o cursor. Agora só :hover (em
+   dispositivos com mouse) ativa o efeito; o foco por teclado usa apenas o
+   contorno padrão. */
+@media (hover: hover) and (pointer: fine) {
+    .nav-links a:hover {
+        color: var(--branco);
+        background: rgba(255, 255, 255, 0.08);
+    }
 
-.nav-links a:hover::after,
-.nav-links a:focus-visible::after,
-.nav-links a.ativo::after {
-    transform: scaleX(1);
+    .nav-links a:hover::after {
+        transform: scaleX(1);
+    }
 }
 
 .search-form {
@@ -489,12 +493,12 @@ button {
 .btn-primario {
     background: linear-gradient(135deg, var(--vermelho-natal), #cf2c36);
     color: var(--branco);
-    box-shadow: 0 8px 20px rgba(179, 32, 42, 0.28);
+    box-shadow: 0 8px 10px rgba(179, 32, 42,0.14);
 }
 
 .btn-primario:hover {
     background: linear-gradient(135deg, var(--vermelho-escuro), var(--vermelho-natal));
-    box-shadow: 0 12px 26px rgba(179, 32, 42, 0.36);
+    box-shadow: 0 12px 13px rgba(179, 32, 42,0.18);
 }
 
 .btn-fantasma {
@@ -511,7 +515,7 @@ button {
 .btn-claro {
     background: var(--creme);
     color: var(--verde-profundo);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 8px 10px rgba(0, 0, 0,0.09);
 }
 
 .btn-claro:hover {
@@ -783,7 +787,7 @@ button {
     background: rgba(255, 252, 247, 0.94);
     text-align: center;
     text-decoration: none;
-    box-shadow: 0 6px 18px rgba(45, 34, 22, 0.07);
+    box-shadow: 0 6px 9px rgba(45, 34, 22,0.04);
     transition: transform var(--transicao), box-shadow var(--transicao), border-color var(--transicao);
 }
 
@@ -859,7 +863,7 @@ button {
     border: 1px solid var(--borda);
     border-radius: var(--raio-grande);
     background: #fffcf7;
-    box-shadow: 0 5px 16px rgba(45, 34, 22, 0.07);
+    box-shadow: 0 5px 8px rgba(45, 34, 22,0.04);
     cursor: pointer;
     transition: transform var(--transicao), box-shadow var(--transicao), border-color var(--transicao);
 }
@@ -905,7 +909,7 @@ button {
     font-weight: 800;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 5px rgba(0, 0, 0,0.07);
 }
 
 .selo-promocao {
@@ -1007,9 +1011,7 @@ button {
     overflow: hidden;
     border-radius: var(--raio-grande);
     background-color: var(--verde-profundo);
-    background-image:
-        linear-gradient(115deg, rgba(16, 44, 28, 0.9), rgba(28, 65, 21, 0.55)),
-        url("../img/fundoverde.jpeg");
+    background-image: url("../img/fundoverde.jpeg");
     background-size: cover;
     background-position: center;
     box-shadow: var(--sombra-forte);
@@ -1041,7 +1043,7 @@ button {
     padding: 18px;
     border-radius: 20px;
     background: rgba(255, 246, 234, 0.94);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 18px 20px rgba(0, 0, 0,0.12);
 }
 
 .slide-item .card-image {
@@ -1213,7 +1215,7 @@ button {
     object-fit: contain;
     transform: translateY(-50%) rotate(-3deg);
     opacity: 0.95;
-    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 20px 15px rgba(0, 0, 0,0.15));
 }
 
 .categoria-hero .page-hero-conteudo {
@@ -1237,7 +1239,7 @@ button {
     border: 1px solid var(--borda);
     border-radius: var(--raio-grande);
     background: rgba(255, 252, 247, 0.92);
-    box-shadow: 0 6px 18px rgba(45, 34, 22, 0.06);
+    box-shadow: 0 6px 9px rgba(45, 34, 22,0.03);
 }
 
 .filtros {
@@ -1425,7 +1427,7 @@ button {
     border: 1px solid var(--borda);
     border-radius: var(--raio-grande);
     background: rgba(255, 252, 247, 0.94);
-    box-shadow: 0 6px 18px rgba(45, 34, 22, 0.06);
+    box-shadow: 0 6px 9px rgba(45, 34, 22,0.03);
     transition: transform var(--transicao), box-shadow var(--transicao);
 }
 
@@ -1528,7 +1530,7 @@ button {
     font-family: var(--fonte-titulo);
     font-size: 0.9rem;
     font-weight: 700;
-    box-shadow: 0 4px 12px rgba(179, 32, 42, 0.25);
+    box-shadow: 0 4px 6px rgba(179, 32, 42,0.12);
 }
 
 .linha-tempo h3 {
@@ -1756,7 +1758,7 @@ button {
     border: 1px solid var(--borda);
     border-radius: var(--raio-grande);
     background: #fffcf7;
-    box-shadow: 0 6px 18px rgba(45, 34, 22, 0.07);
+    box-shadow: 0 6px 9px rgba(45, 34, 22,0.04);
     transition: transform var(--transicao), box-shadow var(--transicao);
 }
 
@@ -1911,7 +1913,7 @@ button {
     max-width: 100%;
     max-height: 76vh;
     border-radius: 14px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 30px rgba(0, 0, 0,0.25);
     animation: surgir 0.35s ease;
 }
 
@@ -2279,7 +2281,7 @@ button {
     border: 1px solid var(--borda);
     border-radius: var(--raio-grande);
     background: rgba(255, 252, 247, 0.95);
-    box-shadow: 0 5px 16px rgba(45, 34, 22, 0.06);
+    box-shadow: 0 5px 8px rgba(45, 34, 22,0.03);
 }
 
 .credito-bloco h2 {
@@ -2349,7 +2351,7 @@ button {
     flex-direction: column;
     width: min(420px, 100%);
     background: var(--creme);
-    box-shadow: -20px 0 60px rgba(10, 24, 15, 0.3);
+    box-shadow: -20px 0 30px rgba(10, 24, 15,0.15);
     transform: translateX(105%);
     visibility: hidden;
     transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), visibility 0.45s;
@@ -2774,7 +2776,7 @@ button {
     width: 84px;
     height: auto;
     margin-bottom: 14px;
-    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
+    filter: drop-shadow(0 4px 5px rgba(0, 0, 0,0.17));
 }
 
 .footer-marca p {
@@ -2886,7 +2888,7 @@ button {
     background: rgba(28, 65, 21, 0.92);
     color: var(--creme);
     font-size: 0.95rem;
-    box-shadow: 0 6px 18px rgba(16, 44, 28, 0.3);
+    box-shadow: 0 6px 9px rgba(16, 44, 28,0.15);
     backdrop-filter: blur(4px);
     transition: background var(--transicao), transform var(--transicao);
 }
@@ -2922,7 +2924,7 @@ button {
     color: var(--branco);
     font-size: 1.2rem;
     font-weight: 700;
-    box-shadow: 0 6px 18px rgba(16, 44, 28, 0.3);
+    box-shadow: 0 6px 9px rgba(16, 44, 28,0.15);
     opacity: 0;
     visibility: hidden;
     transform: translateY(12px);
@@ -2985,4 +2987,407 @@ button {
 
 @keyframes girarLento {
     to { transform: rotate(360deg); }
+}
+
+
+/* Produtos!*/
+
+.categoria-topo {
+    padding-bottom: 8px;
+}
+
+.categoria-sub {
+    max-width: 640px;
+    margin: 0 auto;
+    color: var(--texto-suave);
+    text-align: center;
+}
+
+/* Faixa de resultados da busca da navbar */
+.aviso-busca {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px 16px;
+    width: min(1200px, calc(100% - 40px));
+    margin: 14px auto 0;
+    padding: 12px 16px;
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    background: rgba(255, 252, 247, 0.92);
+    font-family: Arial, sans-serif;
+    font-size: 0.92rem;
+    text-align: center;
+}
+
+.aviso-busca[hidden] {
+    display: none;
+}
+
+.aviso-limpar {
+    font-weight: 700;
+}
+
+/* ----- Vitrine (AV2WEB4) ----- */
+
+.catalogo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 22px;
+    width: min(1200px, 100%);
+    margin: 0 auto;
+    padding: 28px 20px 48px;
+    font-family: Arial, sans-serif;
+}
+
+.card-produto {
+    justify-content: space-between;
+    padding: 15px;
+    overflow: visible;
+    border: 1px solid rgba(179, 32, 42, 0.3);
+    border-radius: 10px;
+    background: #dfd3c1;
+    text-align: center;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.04);
+    cursor: default;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-produto:hover {
+    border-color: rgba(179, 32, 42, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 7px 9px rgba(0, 0, 0, 0.07);
+}
+
+.produto-img {
+    width: 100%;
+    height: 170px;
+    border-radius: 5px;
+    object-fit: contain;
+}
+
+.card-produto:hover .produto-img {
+    transform: none;
+}
+
+.produto-info {
+    flex: 0 0 auto;
+    gap: 7px;
+    margin-top: 12px;
+    padding: 0;
+}
+
+.produto-categoria {
+    color: #777;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.produto-nome {
+    margin: 0;
+    color: #333;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+}
+
+.produto-preco {
+    margin: 0;
+    color: var(--vermelho-natal);
+    font-size: 1.12rem;
+    font-weight: 700;
+}
+
+.btn-comprar {
+    margin-top: 8px;
+    padding: 9px 12px;
+    border: 0;
+    border-radius: 5px;
+    background: var(--vermelho-natal);
+    color: #fff;
+    font-weight: 700;
+}
+
+.btn-comprar:hover {
+    background: #8f1720;
+    color: #fff;
+    transform: none;
+}
+
+/* Produto encontrado pela busca */
+.produto-encontrado {
+    outline: 3px solid var(--dourado);
+    outline-offset: 3px;
+    animation: destaqueBusca 1.4s ease 2;
+}
+
+@keyframes destaqueBusca {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+/* ============================ 14. AJUSTES DA BASE AV2WEB4 ============================ */
+/* Reaplica a estética do AV2WEB4 (carrossel com parallax, linha verde, botões
+   de categoria) sobre a navbar, o rodapé, as ofertas e as demais seções
+   vindas do xmas-deco. */
+
+/* Evita que âncoras fiquem escondidas atrás da navbar fixa */
+#home,
+#catalogo,
+#sobre,
+#acomodacoes {
+    scroll-margin-top: 96px;
+}
+
+/* ============================ PRIMEIRO CARROSSEL (AV2WEB4) ============================ */
+
+.banner-carousel-container {
+    min-height: 460px;
+    /* Linha verde de divisão entre o carrossel e o restante da página */
+    border-bottom: 8px solid var(--verde-oliva-escura);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.carousel-track {
+    min-height: 460px;
+}
+
+.carousel-slide {
+    min-height: 460px;
+    align-items: flex-end;
+}
+
+.slide-content {
+    align-items: flex-end;
+    min-height: 630px;
+    padding: 0;
+}
+
+.imagem-parallax {
+    align-items: flex-end;
+    flex: 0 0 100%;
+    top: 35px;
+}
+
+.santa-img {
+    width: 800px;
+    max-width: none;
+    max-height: none;
+    object-position: bottom center;
+}
+
+/* ============================ BOTÕES DE CATEGORIAS (AV2WEB4) ============================ */
+
+.grade-categorias {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    width: min(1000px, 100%);
+    margin: 38px auto 0;
+    padding: 20px;
+}
+
+.botao-categoria {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: var(--dourado);
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.botao-categoria:hover {
+    border-color: transparent;
+    box-shadow: none;
+    transform: scale(1.04);
+}
+
+.botao-categoria img {
+    display: block;
+    width: min(270px, 100%);
+    height: auto;
+    margin-bottom: 10px;
+    object-fit: contain;
+}
+
+.botao-categoria .titulo-secao {
+    position: relative;
+    margin: 0 0 35px;
+    color: var(--vermelho-natal);
+    font-family: Arial, sans-serif;
+    font-size: 1.08rem;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.botao-categoria .titulo-secao::before {
+    content: "\2726";
+    margin-right: 10px;
+    color: var(--verde-oliva-escura);
+    font-size: 20px;
+}
+
+.botao-categoria .titulo-secao::after {
+    content: "\2726";
+    margin-left: 10px;
+    color: var(--verde-oliva-escura);
+    font-size: 20px;
+}
+
+/* ============================ SEÇÕES DE TEXTO SOBRE O FUNDO ============================ */
+
+.secao-sobre,
+.secao-valores,
+.secao-equipe {
+    background: transparent;
+}
+
+/* ============================ EQUIPE: AVATARES ============================ */
+
+/* Quadrado vermelho sólido enquanto a imagem (img/image1-3.png) não existir.
+   Se a imagem carregar, ela cobre o quadrado; se falhar, o onerror a oculta. */
+.membro-avatar {
+    flex: 0 0 auto;
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 6px;
+    background: #e00000;
+}
+
+.membro-avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ============================ PÁGINA DE CONTATO ============================ */
+
+.contato-unico {
+    width: min(680px, 100%);
+    margin: 0 auto;
+}
+
+.titulo-pagina {
+    margin: 0 0 8px;
+    color: var(--verde-profundo);
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    text-align: center;
+}
+
+.titulo-pagina::before,
+.titulo-pagina::after {
+    content: "\2726";
+    color: var(--verde-oliva-escura);
+    font-size: 0.6em;
+    vertical-align: middle;
+}
+
+.titulo-pagina::before {
+    margin-right: 12px;
+}
+
+.titulo-pagina::after {
+    margin-left: 12px;
+}
+
+/* ============================ 15. ABERTURA EM VÍDEO ============================ */
+
+.intro-video {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    place-items: center;
+    overflow: hidden;
+    background: #000;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+.intro-video.saindo {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.intro-video-midia {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    object-fit: cover;
+    object-position: center;
+}
+
+.intro-video::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 38%;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.55));
+    pointer-events: none;
+}
+
+.intro-video-controles {
+    position: absolute;
+    left: 50%;
+    bottom: max(24px, env(safe-area-inset-bottom));
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    width: min(92%, 520px);
+    transform: translateX(-50%);
+}
+
+.intro-video button {
+    min-height: 44px;
+    padding: 10px 22px;
+    border: 1px solid rgba(255, 246, 234, 0.55);
+    border-radius: 99px;
+    background: rgba(16, 44, 28, 0.72);
+    color: var(--creme);
+    font-size: 0.9rem;
+    font-weight: 700;
+    backdrop-filter: blur(6px);
+    transition: background var(--transicao), transform var(--transicao), opacity var(--transicao);
+}
+
+.intro-video button:hover {
+    background: var(--vermelho-natal);
+    transform: translateY(-2px);
+}
+
+.intro-video-pular {
+    border-color: rgba(230, 167, 31, 0.8) !important;
+    background: rgba(230, 167, 31, 0.9) !important;
+    color: var(--verde-profundo) !important;
+}
+
+.intro-video-pular:hover {
+    background: var(--dourado) !important;
+}
+
+body.intro-ativa {
+    overflow: hidden;
 }
