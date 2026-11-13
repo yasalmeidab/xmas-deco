@@ -1,0 +1,36 @@
+LOJA: X'mas Deco
+SEGMENTO: Outro (decoração natalina)
+TURMA: 1TI_
+INTEGRANTES:
+- Isadora Félix de Almeida
+- Nicolas Martins Almeida
+- Yasmin Almeida Bernardes
+LINKS:
+Site (GitHub Pages): https://yasalmeidab.github.io/xmas-deco/
+Repositório (GitHub): https://github.com/yasalmeidab/xmas-deco
+Vídeo (YouTube): https://youtu.be/iMK36uJzBhA?is=AJs-kJn732p0x1Uq
+
+RECURSOS DE JAVASCRIPT IMPLEMENTADOS (mínimo de 8):
+1. Abertura em vídeo em tela cheia, silenciosa e com botão "Pular abertura" - todas as páginas
+2. Slideshow / carrossel de destaques com autoplay, setas e indicadores - index.html
+3. Parallax das imagens do carrossel - index.html
+4. Neve animada com botão para ligar e desligar - index.html
+5. Cards dinâmicos (50 produtos) gerados por JavaScript - decoarvore.html, interno.html, externo.html e meias-e-globos.html
+6. Busca e filtro de produtos na navbar, com destaque do produto encontrado - todas as páginas
+7. Carrinho de compras com localStorage (adicionar, remover e alterar quantidade) - todas as páginas
+8. Contagem regressiva para o Natal - index.html
+9. Música de fundo com controles de tocar, pausar e parar - todas as páginas
+10. Menu mobile (hambúrguer) - todas as páginas
+11. Animações de entrada ao rolar a página - todas as páginas
+12. Validação do formulário de contato, com máscara de telefone e contador de caracteres - contato.html
+13. Botão "voltar ao topo" - todas as páginas
+14. Carrossel de promoções - index.html
+15. Ano automático no rodapé - todas as páginas
+
+CRÉDITOS (imagens, sons e ícones):
+- Imagens dos produtos: Amazon (https://www.amazon.com.br), Mercado Livre (https://www.mercadolivre.com.br), Magalu/Bandalheira (https://www.magazineluiza.com.br), Leroy Merlin (https://www.leroymerlin.com.br), Tok&Stok (https://www.tokstok.com.br), Shein (https://br.shein.com), Welban (https://www.welban.com.br), Niazí (https://www.niazi.com.br), Polideia (https://www.polideia.com.br) e Nilmara Quintela (https://nilmaraquintela.com.br) - imagens usadas para fins acadêmicos; autores não identificados.
+- Imagens de decoração e fundos: Google Imagens (https://images.google.com) - usadas para fins acadêmicos; autores não identificados.
+- Música de fundo: "Snowman" - Sia (arquivo audio/snowmansia.mp3) - uso acadêmico, sem fins comerciais; confirmar link oficial.
+- Vídeo de abertura: animacaopapainoel.mp4 (arquivo local em video-entrada/) - uso acadêmico; origem a confirmar.
+- Ícones: SVG inline e símbolos Unicode criados no próprio projeto, sem biblioteca externa.
+- Fontes: fontes do sistema (Georgia, Segoe UI, Arial), sem carregamento externo.
