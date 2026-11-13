@@ -125,12 +125,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let temporizadorInicioNeve = null;
     const temporizadoresFlocos = [];
 
-    /* CORREÇÃO (guia, seção 14): no xmas-deco, ligarNeve() procurava um
-       elemento ".rotulo-neve" que não existe no botão. O null.textContent
-       lançava um erro, o setInterval nunca era criado e a neve parava de
-       funcionar. Aqui o botão não depende de nenhum elemento interno, e os
-       temporizadores pendentes são cancelados ao desligar. */
-
     function criarFloco() {
         if (!areaNeve || !neveLigada) return;
         if (areaNeve.childElementCount > 70) return;
